@@ -1,0 +1,4 @@
+packages: p q
+
+shared: True
+executable-dynamic: False

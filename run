@@ -1,0 +1,10 @@
+echo "shared: True" >> cabal.project
+~/cabal/dist-newstyle/build/x86_64-linux/ghc-8.10.2/cabal-install-3.5.0.0/x/cabal/build/cabal/cabal build p
+# Change the interface file for Lib.hs
+echo "q = 0" >> p/Lib.hs
+# Only rebuild .hi
+echo "shared: False" >> cabal.project
+~/cabal/dist-newstyle/build/x86_64-linux/ghc-8.10.2/cabal-install-3.5.0.0/x/cabal/build/cabal/cabal build p
+# Now there are inconsistent .dyn_hi and .hi files
+cabal build q
+# DT_Failed is triggered when building q but the build doesn't recover
